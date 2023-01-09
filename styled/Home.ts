@@ -28,6 +28,14 @@ export const AvatarWrapper = styled.div`
     width: clamp(12vw, 150px, 200px);
     height: clamp(12vw, 150px, 200px);
   }
+
+  :hover {
+    img {
+      cursor: pointer;
+      transform: scale(1.1);
+      transition: all 0.3s ease-in-out;
+    }
+  }
 `;
 
 export const DetailWrapper = styled.div`
