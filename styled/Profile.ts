@@ -78,13 +78,16 @@ export const TextLarge = styled.p`
 `;
 
 export const TextGroup = styled.div`
-  padding: 0.5rem;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 `;
 
 export const Description = styled.p`
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: #6b6b6b;
+  color: #3d3d3d;
 `;
 
 export const DescriptionLight = styled.p`
@@ -113,7 +116,7 @@ export const LinkButton = styled.div`
     }
     > img {
       transform: translateX(5px);
-      transition: all 0.3s ease-in-out;
+      transition: teansform 0.3s ease-in-out;
     }
   }
 `;
@@ -131,13 +134,15 @@ export const RatingWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* @media screen and (max-width: 768px) {
-    justify-content: unset;
-    gap: 5rem;
-  } */
 `;
 
 export const Stars = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const TextLight = styled.p`
+  font-size: 0.9rem;
+  font-weight: 200;
+  color: #6b6b6b;
 `;

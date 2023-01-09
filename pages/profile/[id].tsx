@@ -18,6 +18,7 @@ import {
   Description,
   TextGroup,
   Marker,
+  TextLight,
 } from "../../styled/Profile";
 
 type Item = {
@@ -109,22 +110,22 @@ function Profile({
                     </svg>
                   ))}
                 </Stars>
-                <DescriptionLight>{profile.Rating} reviews</DescriptionLight>
+                <TextLight>{profile.Rating} reviews</TextLight>
               </RatingWrapper>
             </SectionUnderLine>
             <TextGroup>
               <Text>Job </Text>
               {Items.map((item: Item) => (
-                <Description key={item.Id}>{item.Title}</Description>
+                <DescriptionLight key={item.Id}>{item.Title}</DescriptionLight>
               ))}
             </TextGroup>
             <TextGroup>
               <Text>Country</Text>
-              <Description>{profile.CountryName_en}</Description>
+              <DescriptionLight>{profile.CountryName_en}</DescriptionLight>
             </TextGroup>
             <TextGroup>
               <Text>Languages</Text>
-              <Description>{Languages}</Description>
+              <DescriptionLight>{Languages}</DescriptionLight>
             </TextGroup>
             <LinkButton>
               <Link href='#'>Consult</Link>
