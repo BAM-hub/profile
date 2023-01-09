@@ -48,7 +48,15 @@ type ProfileType = {
   Sections: [Section];
 };
 
-function Profile({ profile, Items }: { profile: ProfileType; Items: [Item] }) {
+function Profile({
+  profile,
+  Items,
+  Languages,
+}: {
+  profile: ProfileType;
+  Items: [Item];
+  Languages: string;
+}) {
   console.log({ profile });
   const { Sections: sections } = profile;
   // console.log(jobs);
@@ -116,7 +124,7 @@ function Profile({ profile, Items }: { profile: ProfileType; Items: [Item] }) {
             </TextGroup>
             <TextGroup>
               <Text>Languages</Text>
-              <Description>Arabic, English</Description>
+              <Description>{Languages}</Description>
             </TextGroup>
             <LinkButton>
               <Link href='#'>Consult</Link>
@@ -191,6 +199,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         Sections: sections,
       } as ProfileType,
       Items,
+      Languages:
+        data.Result.Sections.filter(
+          (section: Section) => section.Type === "Languages",
+        )[0]
+          ?.Items.map((item: Item) => item.Title)
+          ?.join(", ") || [],
     },
   };
 };

@@ -49,7 +49,7 @@ export const DetailWrapper = styled.div`
 `;
 
 export const Text = styled.p`
-  font-weight: 800;
+  font-weight: 700;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
