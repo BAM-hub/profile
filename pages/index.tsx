@@ -11,6 +11,7 @@ import {
   ArrowRight,
   ArrowLeft,
   Flex,
+  Container,
 } from "../styled/Home";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -44,116 +45,130 @@ const Home = ({ doctors }: { doctors: [User] }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
-        <SwiperContainer>
-          <Swiper
-            onBeforeInit={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            spaceBetween={10}
-            slidesPerView='auto'
-            breakpoints={{
-              786: {
-                width: 786,
-                slidesPerView: 3,
-              },
-              480: {
-                width: 480,
-                slidesPerView: 2,
-              },
-            }}
-            centeredSlides={true}
-            modules={[Autoplay]}
-            autoplay={{
-              disableOnInteraction: true,
-            }}
-            loop
-          >
-            {doctors.map((doctor, index) => (
-              <SwiperSlide key={doctor.FirstName + index.toString()}>
-                <Link href={`/profile/${doctor.Id}`}>
-                  <Card>
-                    <AvatarWrapper>
-                      {doctor.ProfilePic ? (
-                        <Image
-                          src={`https://s3-eu-west-1.amazonaws.com/curaapps/${doctor.ProfilePic}`}
-                          width={200}
-                          height={200}
-                          alt='avatar'
-                        />
-                      ) : (
-                        <Image
-                          src='/avatar.png'
-                          width={200}
-                          height={200}
-                          alt='avatar'
-                        />
-                      )}
-                    </AvatarWrapper>
-                    <DetailWrapper>
-                      <Text>{doctor.FirstName + " " + doctor.LastName} </Text>
-                      <TextLight>{doctor.SpecialtyTitle_en}</TextLight>
-                      <RatingWrapper>
-                        <svg
-                          width='21'
-                          height='21'
-                          viewBox='0 0 21 21'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            clipRule='evenodd'
-                            d='M10.5 3C8.8032 3 8.64278 5.95544 7.63259 6.99965C6.6224 8.04385 3.48183 6.84993 3.04549 8.70336C2.61006 10.5577 5.43529 11.1869 5.78364 12.7779C6.13381 14.3688 4.40769 16.6041 5.88264 17.7165C7.35759 18.828 8.94529 16.3123 10.5 16.3123C12.0547 16.3123 13.6424 18.828 15.1173 17.7165C16.5923 16.6041 14.8671 14.3688 15.2164 12.7779C15.5656 11.1869 18.3899 10.5577 17.9545 8.70336C17.5191 6.84993 14.3776 8.04385 13.3683 6.99965C12.3581 5.95544 12.1968 3 10.5 3Z'
-                            fill='#FFC224'
-                          ></path>
-                        </svg>
-                        {doctor.Rating}
-                      </RatingWrapper>
-                    </DetailWrapper>
-                  </Card>
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <Flex>
-            <ArrowLeft
-              onClick={() => {
-                swiperRef.current.slidePrev();
+        <Container>
+          <SwiperContainer>
+            <Swiper
+              onBeforeInit={(swiper) => {
+                swiperRef.current = swiper;
               }}
-            >
-              <svg
-                width='6'
-                height='10'
-                viewBox='0 0 6 10'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  d='M5.72069 0.280602C5.89959 0.458339 6 0.698768 6 0.949381C6 1.19999 5.89959 1.44042 5.72069 1.61816L2.32043 5.02372L5.72069 8.38184C5.89959 8.55958 6 8.80001 6 9.05062C6 9.30123 5.89959 9.54166 5.72069 9.7194C5.63139 9.80831 5.52516 9.87888 5.40811 9.92704C5.29106 9.9752 5.16552 10 5.03871 10C4.91191 10 4.78637 9.9752 4.66932 9.92704C4.55227 9.87888 4.44604 9.80831 4.35674 9.7194L0.284122 5.69724C0.194093 5.60905 0.122636 5.50413 0.0738711 5.38853C0.0251066 5.27294 0 5.14895 0 5.02372C0 4.89849 0.0251066 4.7745 0.0738711 4.6589C0.122636 4.5433 0.194093 4.43838 0.284122 4.35019L4.35674 0.280602C4.44604 0.19169 4.55227 0.121117 4.66932 0.072957C4.78637 0.0247967 4.91191 0 5.03871 0C5.16552 0 5.29106 0.0247967 5.40811 0.072957C5.52516 0.121117 5.63139 0.19169 5.72069 0.280602Z'
-                  fill='#9EACCD'
-                ></path>
-              </svg>
-            </ArrowLeft>
-            <ArrowRight
-              onClick={() => {
-                swiperRef.current.slideNext();
+              spaceBetween={5}
+              slidesPerView={"auto"}
+              breakpoints={{
+                320: {
+                  slidesPerView: 2,
+                  spaceBetween: 10,
+                },
+                640: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,
+                },
+                768: {
+                  slidesPerView: 3,
+                  spaceBetween: 40,
+                },
+                1024: {
+                  slidesPerView: 4,
+                  spaceBetween: 10,
+                },
+                1080: {
+                  slidesPerView: 5,
+                  spaceBetween: 10,
+                },
               }}
+              centeredSlides={true}
+              modules={[Autoplay]}
+              autoplay={{
+                disableOnInteraction: true,
+              }}
+              loop
             >
-              <svg
-                width='6'
-                height='10'
-                viewBox='0 0 6 10'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
+              {doctors.map((doctor, index) => (
+                <SwiperSlide key={doctor.FirstName + index.toString()}>
+                  <Link href={`/profile/${doctor.Id}`}>
+                    <Card>
+                      <AvatarWrapper>
+                        {doctor.ProfilePic ? (
+                          <Image
+                            src={`https://s3-eu-west-1.amazonaws.com/curaapps/${doctor.ProfilePic}`}
+                            width={200}
+                            height={200}
+                            alt='avatar'
+                          />
+                        ) : (
+                          <Image
+                            src='/avatar.png'
+                            width={200}
+                            height={200}
+                            alt='avatar'
+                          />
+                        )}
+                      </AvatarWrapper>
+                      <DetailWrapper>
+                        <Text>{doctor.FirstName + " " + doctor.LastName} </Text>
+                        <TextLight>{doctor.SpecialtyTitle_en}</TextLight>
+                        <RatingWrapper>
+                          <svg
+                            width='21'
+                            height='21'
+                            viewBox='0 0 21 21'
+                            fill='none'
+                            xmlns='http://www.w3.org/2000/svg'
+                          >
+                            <path
+                              fillRule='evenodd'
+                              clipRule='evenodd'
+                              d='M10.5 3C8.8032 3 8.64278 5.95544 7.63259 6.99965C6.6224 8.04385 3.48183 6.84993 3.04549 8.70336C2.61006 10.5577 5.43529 11.1869 5.78364 12.7779C6.13381 14.3688 4.40769 16.6041 5.88264 17.7165C7.35759 18.828 8.94529 16.3123 10.5 16.3123C12.0547 16.3123 13.6424 18.828 15.1173 17.7165C16.5923 16.6041 14.8671 14.3688 15.2164 12.7779C15.5656 11.1869 18.3899 10.5577 17.9545 8.70336C17.5191 6.84993 14.3776 8.04385 13.3683 6.99965C12.3581 5.95544 12.1968 3 10.5 3Z'
+                              fill='#FFC224'
+                            ></path>
+                          </svg>
+                          {doctor.Rating}
+                        </RatingWrapper>
+                      </DetailWrapper>
+                    </Card>
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <Flex>
+              <ArrowLeft
+                onClick={() => {
+                  swiperRef.current.slidePrev();
+                }}
               >
-                <path
-                  d='M0.279313 0.280602C0.100415 0.458339 0 0.698768 0 0.949381C0 1.19999 0.100415 1.44042 0.279313 1.61816L3.67957 5.02372L0.279313 8.38184C0.100415 8.55958 0 8.80001 0 9.05062C0 9.30123 0.100415 9.54166 0.279313 9.7194C0.368606 9.80831 0.474841 9.87888 0.59189 9.92704C0.708939 9.9752 0.834485 10 0.961285 10C1.08809 10 1.21363 9.9752 1.33068 9.92704C1.44773 9.87888 1.55396 9.80831 1.64326 9.7194L5.71588 5.69724C5.80591 5.60905 5.87736 5.50413 5.92613 5.38853C5.97489 5.27294 6 5.14895 6 5.02372C6 4.89849 5.97489 4.7745 5.92613 4.6589C5.87736 4.5433 5.80591 4.43838 5.71588 4.35019L1.64326 0.280602C1.55396 0.19169 1.44773 0.121117 1.33068 0.072957C1.21363 0.0247967 1.08809 0 0.961285 0C0.834485 0 0.708939 0.0247967 0.59189 0.072957C0.474841 0.121117 0.368606 0.19169 0.279313 0.280602Z'
-                  fill='#9EACCD'
-                ></path>
-              </svg>
-            </ArrowRight>
-          </Flex>
-        </SwiperContainer>
+                <svg
+                  width='6'
+                  height='10'
+                  viewBox='0 0 6 10'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M5.72069 0.280602C5.89959 0.458339 6 0.698768 6 0.949381C6 1.19999 5.89959 1.44042 5.72069 1.61816L2.32043 5.02372L5.72069 8.38184C5.89959 8.55958 6 8.80001 6 9.05062C6 9.30123 5.89959 9.54166 5.72069 9.7194C5.63139 9.80831 5.52516 9.87888 5.40811 9.92704C5.29106 9.9752 5.16552 10 5.03871 10C4.91191 10 4.78637 9.9752 4.66932 9.92704C4.55227 9.87888 4.44604 9.80831 4.35674 9.7194L0.284122 5.69724C0.194093 5.60905 0.122636 5.50413 0.0738711 5.38853C0.0251066 5.27294 0 5.14895 0 5.02372C0 4.89849 0.0251066 4.7745 0.0738711 4.6589C0.122636 4.5433 0.194093 4.43838 0.284122 4.35019L4.35674 0.280602C4.44604 0.19169 4.55227 0.121117 4.66932 0.072957C4.78637 0.0247967 4.91191 0 5.03871 0C5.16552 0 5.29106 0.0247967 5.40811 0.072957C5.52516 0.121117 5.63139 0.19169 5.72069 0.280602Z'
+                    fill='#9EACCD'
+                  ></path>
+                </svg>
+              </ArrowLeft>
+              <ArrowRight
+                onClick={() => {
+                  swiperRef.current.slideNext();
+                }}
+              >
+                <svg
+                  width='6'
+                  height='10'
+                  viewBox='0 0 6 10'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M0.279313 0.280602C0.100415 0.458339 0 0.698768 0 0.949381C0 1.19999 0.100415 1.44042 0.279313 1.61816L3.67957 5.02372L0.279313 8.38184C0.100415 8.55958 0 8.80001 0 9.05062C0 9.30123 0.100415 9.54166 0.279313 9.7194C0.368606 9.80831 0.474841 9.87888 0.59189 9.92704C0.708939 9.9752 0.834485 10 0.961285 10C1.08809 10 1.21363 9.9752 1.33068 9.92704C1.44773 9.87888 1.55396 9.80831 1.64326 9.7194L5.71588 5.69724C5.80591 5.60905 5.87736 5.50413 5.92613 5.38853C5.97489 5.27294 6 5.14895 6 5.02372C6 4.89849 5.97489 4.7745 5.92613 4.6589C5.87736 4.5433 5.80591 4.43838 5.71588 4.35019L1.64326 0.280602C1.55396 0.19169 1.44773 0.121117 1.33068 0.072957C1.21363 0.0247967 1.08809 0 0.961285 0C0.834485 0 0.708939 0.0247967 0.59189 0.072957C0.474841 0.121117 0.368606 0.19169 0.279313 0.280602Z'
+                    fill='#9EACCD'
+                  ></path>
+                </svg>
+              </ArrowRight>
+            </Flex>
+          </SwiperContainer>
+        </Container>
       </main>
     </>
   );

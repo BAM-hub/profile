@@ -12,9 +12,9 @@ export const Card = styled.div`
   align-items: center;
   justify-content: space-evenly;
   padding: 1rem;
-  min-width: 50%;
+  /* min-width: 50%; */
   max-width: calc(clamp(12vw, 150px, 200px) + 5rem);
-  /* min-width: 20rem; */
+  max-width: 15rem;
   border-radius: 10px;
   box-shadow: 0px 3px 28px rgb(211 226 234 / 15%);
 `;
@@ -105,4 +105,13 @@ export const Flex = styled.div`
   display: flex;
   margin-top: 1rem;
   padding: 1rem;
+`;
+
+export const Container = styled.div`
+  width: 75%;
+  margin: auto;
+  gap: 2rem;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
