@@ -12,6 +12,8 @@ export const Card = styled.div`
   align-items: center;
   justify-content: space-evenly;
   padding: 1rem;
+  min-width: 50%;
+  max-width: calc(clamp(12vw, 150px, 200px) + 5rem);
   /* min-width: 20rem; */
   border-radius: 10px;
   box-shadow: 0px 3px 28px rgb(211 226 234 / 15%);
@@ -30,7 +32,7 @@ export const AvatarWrapper = styled.div`
 
 export const DetailWrapper = styled.div`
   /* height: 6rem; */
-  max-width: 20rem;
+  /* max-width: 20rem; */
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -50,6 +52,10 @@ export const Text = styled.p`
 export const TextLight = styled.p`
   font-weight: 300;
   color: rgb(211 226 234);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   text-decoration: none;
 `;
 
@@ -63,4 +69,32 @@ export const RatingWrapper = styled.div`
   align-items: center;
   gap: 5px;
   padding: 1px 0.5rem;
+`;
+
+export const ArrowRight = styled.div`
+  padding: 1rem 1.5rem;
+  border: 1px solid #e3f0fb;
+  border-radius: 0 1rem 1rem 0;
+  width: fit-content;
+  :hover {
+    border: 1px solid #486df6;
+    transition: all 0.3s ease-in-out;
+  }
+`;
+
+export const ArrowLeft = styled.div`
+  padding: 1rem 1.5rem;
+  border: 1px solid #e3f0fb;
+  border-radius: 1rem 0 0 1rem;
+  width: fit-content;
+  :hover {
+    border: 1px solid #486df6;
+    transition: all 0.3s ease-in-out;
+  }
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  margin-top: 1rem;
+  padding: 1rem;
 `;
