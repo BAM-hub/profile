@@ -111,6 +111,10 @@ export const Container = styled.div`
   width: 75%;
   margin: auto;
   gap: 2rem;
+  @media screen and (max-width: 992px) {
+    width: 90%;
+  }
+
   @media screen and (max-width: 768px) {
     width: 100%;
   }
