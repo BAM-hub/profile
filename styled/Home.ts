@@ -12,6 +12,9 @@ export const Direction = styled.div`
 export const SwiperContainer = styled.div`
   padding-top: 1rem;
   padding-bottom: 1rem;
+  * {
+    direction: rtl !important;
+  }
 `;
 
 export const Card = styled.div`
@@ -112,6 +115,7 @@ export const ArrowLeft = styled.div`
 
 export const Flex = styled.div`
   display: flex;
+  flex-direction: ${(props) => (props.dir === "rtl" ? "row" : "row-reverse")};
   margin-top: 1rem;
   padding: 1rem;
 `;
