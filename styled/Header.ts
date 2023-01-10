@@ -22,6 +22,7 @@ export const Search = styled.input`
   height: 2.5rem;
   border: 1px solid #eaeaea;
   padding-left: 1rem;
+  padding-right: 1rem;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 8%);
 `;
 
