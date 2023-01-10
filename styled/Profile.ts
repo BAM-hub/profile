@@ -111,12 +111,13 @@ export const LinkButton = styled.div`
   }
   :hover {
     background: #217cc2;
+    cursor: pointer;
     > a {
       text-decoration: underline;
     }
     > img {
       transform: translateX(5px);
-      transition: teansform 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
   }
 `;
@@ -145,4 +146,52 @@ export const TextLight = styled.p`
   font-size: 0.9rem;
   font-weight: 200;
   color: #6b6b6b;
+`;
+
+export const AvatarThumbnail = styled.div`
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const UserInfo = styled.div`
+  display: flex;
+  height: 100%;
+  gap: 0.4rem;
+`;
+
+export const FlexStart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+export const Comment = styled.p`
+  font-size: 1rem;
+  font-weight: 400;
+  padding-left: 4rem;
+`;
+
+export const Button = styled(LinkButton)`
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  margin: auto;
+  p {
+    color: #fff;
+  }
+  img {
+    width: 1rem;
+    rotate: 90deg;
+  }
 `;

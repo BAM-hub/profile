@@ -1,7 +1,8 @@
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { AvatarWrapper, Text } from "../../styled/Home";
+import { useState } from "react";
+import { AvatarWrapper, Container, Text } from "../../styled/Home";
 import {
   DoctorImageContainer,
   Layout,
@@ -19,7 +20,26 @@ import {
   TextGroup,
   Marker,
   TextLight,
+  AvatarThumbnail,
+  UserInfo,
+  FlexStart,
+  Comment,
+  Button,
 } from "../../styled/Profile";
+
+const comments = [
+  {
+    id: 1,
+    name: "John Doe",
+    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  },
+  {
+    id: 2,
+    name: "",
+    comment:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae semper nisl. Sed euismod, nisl sit amet aliquam consectetur, nisl nisl aliquam nisl, sit amet aliquam nisl",
+  },
+];
 
 type Item = {
   Id: number;
@@ -61,6 +81,7 @@ function Profile({
   console.log({ profile });
   const { Sections: sections } = profile;
   // console.log(jobs);
+  const [shown, setShown] = useState(1);
   return (
     <main>
       <Layout>
@@ -115,16 +136,26 @@ function Profile({
             </SectionUnderLine>
             <TextGroup>
               <Text>Job </Text>
+              {Items.length < 1 && (
+                <DescriptionLight>No job Enterd</DescriptionLight>
+              )}
               {Items.map((item: Item) => (
                 <DescriptionLight key={item.Id}>{item.Title}</DescriptionLight>
               ))}
             </TextGroup>
             <TextGroup>
               <Text>Country</Text>
+              {profile.CountryName_en.length < 1 && (
+                <DescriptionLight>No Country Enterd</DescriptionLight>
+              )}
               <DescriptionLight>{profile.CountryName_en}</DescriptionLight>
             </TextGroup>
             <TextGroup>
               <Text>Languages</Text>
+              {Languages.length < 1 && (
+                <DescriptionLight>No Language Enterd</DescriptionLight>
+              )}
+
               <DescriptionLight>{Languages}</DescriptionLight>
             </TextGroup>
             <LinkButton>
@@ -163,6 +194,47 @@ function Profile({
               </ul>
             </InformationCard>
           ))}
+          <PaddingLeft>
+            <h1>Reviews</h1>
+          </PaddingLeft>
+          {[...Array(shown)].map((_, index) => (
+            <InformationCard key={index.toString()}>
+              <FlexStart>
+                <UserInfo>
+                  <AvatarThumbnail>
+                    <Image
+                      src={"/avatar.png"}
+                      width={50}
+                      height={50}
+                      alt='user'
+                    />
+                  </AvatarThumbnail>
+                  <TextGroup>
+                    <Text>2022</Text>
+                    <TextLight>Cura User</TextLight>
+                  </TextGroup>
+                </UserInfo>
+                <PaddingLeft>
+                  <Comment>
+                    lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    vitae semper nisl. Sed euismod, nisl sit amet aliquam
+                    consectetur, nisl nisl aliquam nisl, sit amet aliquam nisl
+                  </Comment>
+                </PaddingLeft>
+              </FlexStart>
+            </InformationCard>
+          ))}
+          {shown < comments.length && (
+            <Button onClick={() => setShown(shown + 1)}>
+              <Text>Load more</Text>
+              <Image
+                src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMzRweCIgaGVpZ2h0PSIxOXB4IiB2aWV3Qm94PSIwIDAgMzQgMTkiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUxLjIgKDU3NTE5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5sZWZ0LWFycm93PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9ImxlZnQtYXJyb3ciIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxwb2x5Z29uIGlkPSJkYXNkc2Fkc2EiIGZpbGw9IiNGRkZGRkYiIGZpbGwtcnVsZT0ibm9uemVybyIgcG9pbnRzPSIyMi41OTQ5NDg3IDIgMjEuMzkyMzk0MSAzLjIxNzk4NTUzIDI2Ljc0NDI4NjMgOC42Mzg2MjQxIDMgOC42Mzg2MjQxIDMgMTAuMzYxMzc1OSAyNi43NDQyODYzIDEwLjM2MTM3NTkgMjEuMzkyMzk0MSAxNS43ODIwMTQ1IDIyLjU5NDk0ODcgMTcgMzAgOS41Ij48L3BvbHlnb24+CiAgICA8L2c+Cjwvc3ZnPg=='
+                width={25}
+                height={25}
+                alt='arrow'
+              />
+            </Button>
+          )}
         </ProfileInformation>
       </Layout>
     </main>

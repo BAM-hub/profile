@@ -33,7 +33,7 @@ export const AvatarWrapper = styled.div`
     img {
       cursor: pointer;
       transform: scale(1.1);
-      transition: all 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out;
     }
   }
 `;
