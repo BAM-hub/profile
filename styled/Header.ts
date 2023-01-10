@@ -36,7 +36,7 @@ export const Button = styled.button`
     background-color: #eaeaea;
     transition: all 0.2s ease-in-out;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     display: none;
   }
 `;
@@ -47,6 +47,9 @@ export const BlueButton = styled(Button)`
   :hover {
     background-color: #217cc2;
   }
+  @media (max-width: 992px) {
+    display: none;
+  }
 `;
 
 export const GroupSmall = styled(GroupLarge)`
@@ -55,4 +58,9 @@ export const GroupSmall = styled(GroupLarge)`
   height: 2.3rem;
   padding-right: 0.4rem;
   border-right: 0.1rem solid #eaeaea;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 `;

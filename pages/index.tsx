@@ -12,6 +12,7 @@ import {
   ArrowLeft,
   Flex,
   Container,
+  Direction,
 } from "../styled/Home";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

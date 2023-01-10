@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+export const Direction = styled.div`
+  direction: ${(props) => props.dir};
+  /* direction: rtl; */
+  * {
+    direction: ${(props) => props.dir};
+    /* direction: rtl; */
+  }
+`;
+
 export const SwiperContainer = styled.div`
   padding-top: 1rem;
   padding-bottom: 1rem;
