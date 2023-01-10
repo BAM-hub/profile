@@ -56,7 +56,7 @@ function Header() {
         <Button>{locale === "en" ? "Login" : "تسجيل الدخول"}</Button>
         <BlueButton>{locale === "en" ? "Register" : "انشاء حساب"}</BlueButton>
         <GroupSmall>
-          <Link href={locale === "en" ? "ar" : "en"} locale={false}>
+          <Link href={asPath} locale={locale === "en" ? "ar" : "en"}>
             <svg
               width='19'
               height='19'

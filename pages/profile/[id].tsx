@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { AvatarWrapper, Container, Text } from "../../styled/Home";
 import {
@@ -64,6 +65,7 @@ type ProfileType = {
   LastName_ar: string;
   ProfilePic: string;
   SpecialtyTitle_en: string;
+  SpecialtyTitle_ar: string;
   CountryName_en: string;
   Rating: number;
   Sections: [Section];
@@ -80,8 +82,10 @@ function Profile({
 }) {
   console.log({ profile });
   const { Sections: sections } = profile;
-  // console.log(jobs);
   const [shown, setShown] = useState(1);
+  const { locale } = useRouter();
+  const isEnglish = locale === "en";
+
   return (
     <main>
       <Layout>
@@ -108,9 +112,15 @@ function Profile({
           <PaddingLeft>
             <SectionUnderLine>
               <TextLarge>
-                {profile.FirstName + " " + profile.LastName}
+                {isEnglish
+                  ? profile.FirstName + " " + profile.LastName
+                  : profile.FirstName_ar + " " + profile.LastName_ar}
               </TextLarge>
-              <Description>{profile.SpecialtyTitle_en}</Description>
+              <Description>
+                {isEnglish
+                  ? profile.SpecialtyTitle_en
+                  : profile.SpecialtyTitle_ar}
+              </Description>
               <RatingWrapper>
                 <Stars>
                   {[...Array(5)].map((_, index) => (
@@ -131,7 +141,9 @@ function Profile({
                     </svg>
                   ))}
                 </Stars>
-                <TextLight>{profile.Rating} reviews</TextLight>
+                <TextLight>
+                  {profile.Rating} {isEnglish ? "Reviews" : "مراجعة"}
+                </TextLight>
               </RatingWrapper>
             </SectionUnderLine>
             <TextGroup>
@@ -144,22 +156,26 @@ function Profile({
               ))}
             </TextGroup>
             <TextGroup>
-              <Text>Country</Text>
+              <Text>{isEnglish ? "Country" : "البلد"}</Text>
               {profile.CountryName_en.length < 1 && (
-                <DescriptionLight>No Country Enterd</DescriptionLight>
+                <DescriptionLight>
+                  {isEnglish ? "No Country Enterd" : "لم يتم إدخال البلد"}
+                </DescriptionLight>
               )}
               <DescriptionLight>{profile.CountryName_en}</DescriptionLight>
             </TextGroup>
             <TextGroup>
-              <Text>Languages</Text>
+              <Text>{isEnglish ? "Languages" : "اللغات"}</Text>
               {Languages.length < 1 && (
-                <DescriptionLight>No Language Enterd</DescriptionLight>
+                <DescriptionLight>
+                  {isEnglish ? "No Languages Enterd" : "لم يتم إدخال اللغات"}
+                </DescriptionLight>
               )}
 
               <DescriptionLight>{Languages}</DescriptionLight>
             </TextGroup>
             <LinkButton>
-              <Link href='#'>Consult</Link>
+              <Link href='#'>{isEnglish ? "Consult" : "استشارة"}</Link>
               <Image
                 src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMzRweCIgaGVpZ2h0PSIxOXB4IiB2aWV3Qm94PSIwIDAgMzQgMTkiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUxLjIgKDU3NTE5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5sZWZ0LWFycm93PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9ImxlZnQtYXJyb3ciIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxwb2x5Z29uIGlkPSJkYXNkc2Fkc2EiIGZpbGw9IiNGRkZGRkYiIGZpbGwtcnVsZT0ibm9uemVybyIgcG9pbnRzPSIyMi41OTQ5NDg3IDIgMjEuMzkyMzk0MSAzLjIxNzk4NTUzIDI2Ljc0NDI4NjMgOC42Mzg2MjQxIDMgOC42Mzg2MjQxIDMgMTAuMzYxMzc1OSAyNi43NDQyODYzIDEwLjM2MTM3NTkgMjEuMzkyMzk0MSAxNS43ODIwMTQ1IDIyLjU5NDk0ODcgMTcgMzAgOS41Ij48L3BvbHlnb24+CiAgICA8L2c+Cjwvc3ZnPg=='
                 width={25}
@@ -172,7 +188,7 @@ function Profile({
 
         <ProfileInformation>
           <PaddingLeft>
-            <h1>Information</h1>
+            <h1>{isEnglish ? "information" : "معلومات"}</h1>
           </PaddingLeft>
           {sections.map((section: Section, index: number) => (
             <InformationCard key={index.toString()}>
@@ -195,7 +211,7 @@ function Profile({
             </InformationCard>
           ))}
           <PaddingLeft>
-            <h1>Reviews</h1>
+            <h1>{isEnglish ? "Reviews" : "مراجعات"}</h1>
           </PaddingLeft>
           {[...Array(shown)].map((_, index) => (
             <InformationCard key={index.toString()}>
@@ -243,43 +259,51 @@ function Profile({
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   console.log({ params });
-  const response = await fetch(
-    `https://api-dev.cura.healthcare/DoctorProfileAnonymous/${params!.id}`,
-  );
-  const data = await response.json();
-  const { Items } = data.Result.Sections.filter(
-    (section: Section) => section.Type === "Jobs",
-  )[0];
-  const sections = data.Result.Sections.filter(
-    (section: Section) =>
-      ![
-        "Jobs",
-        "MyServices",
-        "MediaIntro",
-        "UsecasesDiseases",
-        "UsecasesSymptomps",
-        "UsecasesServices",
-        "Recommendations",
-        "Languages",
-        "Awards",
-      ].includes(section.Type),
-  );
+  try {
+    const response = await fetch(
+      `https://api-dev.cura.healthcare/DoctorProfileAnonymous/${params!.id}`,
+    );
 
-  return {
-    props: {
-      profile: {
-        ...data.Result,
-        Sections: sections,
-      } as ProfileType,
-      Items,
-      Languages:
-        data.Result.Sections.filter(
-          (section: Section) => section.Type === "Languages",
-        )[0]
-          ?.Items.map((item: Item) => item.Title)
-          ?.join(", ") || [],
-    },
-  };
+    const data = await response.json();
+    const { Items } = data.Result.Sections.filter(
+      (section: Section) => section.Type === "Jobs",
+    )[0];
+    const sections = data.Result.Sections.filter(
+      (section: Section) =>
+        ![
+          "Jobs",
+          "MyServices",
+          "MediaIntro",
+          "UsecasesDiseases",
+          "UsecasesSymptomps",
+          "UsecasesServices",
+          "Recommendations",
+          "Languages",
+          "Awards",
+        ].includes(section.Type),
+    );
+
+    return {
+      props: {
+        profile: {
+          ...data.Result,
+          Sections: sections,
+        } as ProfileType,
+        Items,
+        Languages:
+          data.Result.Sections.filter(
+            (section: Section) => section.Type === "Languages",
+          )[0]
+            ?.Items.map((item: Item) => item.Title)
+            ?.join(", ") || [],
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {},
+    };
+  }
 };
 
 export default Profile;
