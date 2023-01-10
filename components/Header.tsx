@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import {
   Button,
@@ -8,8 +9,9 @@ import {
   BlueButton,
 } from "../styled/Header";
 import { Container } from "../styled/Home";
-
+import { useRouter } from "next/router";
 function Header() {
+  const { locale, asPath } = useRouter();
   const [open, setOpen] = useState(false);
   return (
     <Container>
@@ -21,7 +23,7 @@ function Header() {
             viewBox='0 0 38 28'
             xmlns='http://www.w3.org/2000/svg'
           >
-            <g id='Artboard-2' fill='none' fill-rule='evenodd'>
+            <g id='Artboard-2' fill='none' fillRule='evenodd'>
               <g id='Group' transform='translate(.75 .5)'>
                 <polygon
                   id='Fill-6'
@@ -46,27 +48,32 @@ function Header() {
               </g>
             </g>
           </svg>
-          <Search type='text' placeholder='search' />
+          <Search
+            type='text'
+            placeholder={locale === "en" ? "Search" : "بحث"}
+          />
         </GroupLarge>
-        <Button>Login</Button>
-        <BlueButton>Login</BlueButton>
+        <Button>{locale === "en" ? "Login" : "تسجيل الدخول"}</Button>
+        <BlueButton>{locale === "en" ? "Register" : "انشاء حساب"}</BlueButton>
         <GroupSmall>
-          <svg
-            width='19'
-            height='19'
-            viewBox='0 0 19 19'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <g fill='none' fill-rule='evenodd'>
-              <path d='M-3-3h25v25H-3z'></path>
-              <g fill='#000' fill-rule='nonzero'>
-                <path d='M9.5 18.402A8.902 8.902 0 1 1 9.5.598a8.902 8.902 0 0 1 0 17.804zm0-1.137a7.765 7.765 0 1 0 0-15.53 7.765 7.765 0 0 0 0 15.53z'></path>
-                <path d='M9.5 18.402c-2.137 0-3.585-4-3.585-8.902C5.915 4.598 7.363.598 9.5.598s3.585 4 3.585 8.902c0 4.902-1.448 8.902-3.585 8.902zm0-1.137c1.195 0 2.448-3.463 2.448-7.765S10.695 1.735 9.5 1.735 7.052 5.198 7.052 9.5s1.253 7.765 2.448 7.765z'></path>
-                <path d='M1.7 7.402a.568.568 0 0 1 0-1.137h15.567a.568.568 0 0 1 0 1.137H1.7zM1.7 12.735a.568.568 0 1 1 0-1.137h15.567a.568.568 0 0 1 0 1.137H1.7z'></path>
+          <Link href={locale === "en" ? "ar" : "en"} locale={false}>
+            <svg
+              width='19'
+              height='19'
+              viewBox='0 0 19 19'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <g fill='none' fillRule='evenodd'>
+                <path d='M-3-3h25v25H-3z'></path>
+                <g fill='#000' fillRule='nonzero'>
+                  <path d='M9.5 18.402A8.902 8.902 0 1 1 9.5.598a8.902 8.902 0 0 1 0 17.804zm0-1.137a7.765 7.765 0 1 0 0-15.53 7.765 7.765 0 0 0 0 15.53z'></path>
+                  <path d='M9.5 18.402c-2.137 0-3.585-4-3.585-8.902C5.915 4.598 7.363.598 9.5.598s3.585 4 3.585 8.902c0 4.902-1.448 8.902-3.585 8.902zm0-1.137c1.195 0 2.448-3.463 2.448-7.765S10.695 1.735 9.5 1.735 7.052 5.198 7.052 9.5s1.253 7.765 2.448 7.765z'></path>
+                  <path d='M1.7 7.402a.568.568 0 0 1 0-1.137h15.567a.568.568 0 0 1 0 1.137H1.7zM1.7 12.735a.568.568 0 1 1 0-1.137h15.567a.568.568 0 0 1 0 1.137H1.7z'></path>
+                </g>
               </g>
-            </g>
-          </svg>
-          Arabic
+            </svg>
+            {locale === "en" ? "عربي" : "English"}
+          </Link>
         </GroupSmall>
 
         <button
@@ -85,9 +92,9 @@ function Header() {
           >
             <path
               className='line'
-              stroke-width='10'
-              stroke-linecap='round'
-              stroke-linejoin='round'
+              strokeWidth='10'
+              strokeLinecap='round'
+              strokeLinejoin='round'
               d='m 20 40 h 60 a 1 1 0 0 1 0 20 h -60 a 1 1 0 0 1 0 -40 h 30 v 70'
             ></path>
           </svg>
