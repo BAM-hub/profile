@@ -265,7 +265,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = data.Result.map((doctor: Item) => ({
     params: { id: doctor.Id.toString() },
   }));
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
