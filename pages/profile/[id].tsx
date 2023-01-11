@@ -1,9 +1,9 @@
-import { GetServerSideProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { AvatarWrapper, Container, Text } from "../../styled/Home";
+import { AvatarWrapper, Text } from "../../styled/Home";
 import {
   DoctorImageContainer,
   Layout,
@@ -257,8 +257,18 @@ function Profile({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  console.log({ params });
+export const getStaticPaths: GetStaticPaths = async () => {
+  const response = await fetch(
+    "https://api-dev.cura.healthcare/DoctorProfileAnonymous",
+  );
+  const data = await response.json();
+  const paths = data.Result.map((doctor: Item) => ({
+    params: { id: doctor.Id },
+  }));
+  return { paths, fallback: true };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const response = await fetch(
       `https://api-dev.cura.healthcare/DoctorProfileAnonymous/${params!.id}`,
@@ -297,6 +307,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
             ?.Items.map((item: Item) => item.Title)
             ?.join(", ") || [],
       },
+      revalidate: 100,
     };
   } catch (error) {
     console.log(error);

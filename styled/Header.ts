@@ -5,9 +5,7 @@ export const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* padding-top: 0.5rem;
-  padding-bottom: 0.5rem; */
-  border-bottom: 1px solid #eaeaea;
+  height: 60px;
 `;
 
 export const GroupLarge = styled.div`
@@ -15,11 +13,17 @@ export const GroupLarge = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  @media screen and (max-width: 992px) {
+    width: 70%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 85%;
+  }
 `;
 
 export const Search = styled.input`
   width: 100%;
-  height: 2.5rem;
+  height: 60px;
   border: 1px solid #eaeaea;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -27,11 +31,12 @@ export const Search = styled.input`
 `;
 
 export const Button = styled.button`
-  padding: 0 1rem;
-  height: 2.2rem;
+  padding: 0.8rem 1rem;
   border: 1px solid #eaeaea;
   background-color: #fff;
   border-radius: 0.4rem;
+  font-size: 1rem;
+  font-weight: 400;
   :hover {
     cursor: pointer;
     background-color: #eaeaea;
@@ -58,10 +63,35 @@ export const GroupSmall = styled(GroupLarge)`
   gap: 0.5rem;
   height: 2.3rem;
   padding-right: 0.4rem;
+  padding-left: 0.4rem;
+
   border-right: 0.1rem solid #eaeaea;
   a {
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
+  @media screen and (max-width: 992px) {
+    width: 25%;
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+    a {
+      gap: 1rem;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    display: none;
+    width: 15%;
+  }
+`;
+
+export const Ham = styled.button`
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+`;
+
+export const FullWidth = styled.div`
+  width: 100%;
+  border-bottom: 3px solid #eaeaea;
 `;

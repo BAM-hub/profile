@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 export const Direction = styled.div`
-  direction: ${(props) => props.dir};
-  /* direction: rtl; */
   * {
     direction: ${(props) => props.dir};
-    /* direction: rtl; */
   }
 `;
 
@@ -24,13 +21,14 @@ export const Card = styled.div`
   align-items: center;
   justify-content: space-evenly;
   padding: 1rem;
-  /* min-width: 50%; */
   max-width: calc(clamp(12vw, 150px, 200px) + 5rem);
   max-width: 15rem;
   border-radius: 10px;
   box-shadow: 0px 3px 28px rgb(211 226 234 / 15%);
 `;
 export const AvatarWrapper = styled.div`
+  display: block;
+  z-index: 4;
   width: clamp(12vw, 150px, 200px);
   height: clamp(12vw, 150px, 200px);
   overflow: hidden;
@@ -45,19 +43,16 @@ export const AvatarWrapper = styled.div`
     img {
       cursor: pointer;
       transform: scale(1.1);
-      transition: transform 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
   }
 `;
 
 export const DetailWrapper = styled.div`
-  /* height: 6rem; */
-  /* max-width: 20rem; */
   display: flex;
   flex-direction: column;
   padding: 1rem;
   gap: 1rem;
-  /* border: 1px solid black; */
 `;
 
 export const Text = styled.p`

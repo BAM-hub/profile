@@ -40,6 +40,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   text-decoration: none;
   color: initial;
   font-family: DINNextLT, Proxima Nova, sans-serif;
@@ -50,13 +52,6 @@
 *::after {
   box-sizing: border-box;
 }
-/* 
-.examples {
-  padding: 3rem;
-  max-width: 1200px;
-  display: flex;
-  gap: clamp(2rem, 8vw, 4rem);
-} */
 
 button {
   background: transparent;
