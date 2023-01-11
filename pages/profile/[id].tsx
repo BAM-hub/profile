@@ -262,10 +262,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
     "https://api-dev.cura.healthcare/DoctorsListings/",
   );
   const data = await response.json();
-  const paths = data.Result.map((doctor: Item) => ({
-    params: { id: doctor.Id.toString() },
-  }));
-  return { paths, fallback: false };
+  const paths = data.Result.slice(10)
+    .map((doctor: Item) => [
+      { params: { id: doctor.Id.toString() }, locale: "en" },
+      { params: { id: doctor.Id.toString() }, locale: "ar" },
+    ])
+    .flat();
+  return { paths, fallback: true };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
