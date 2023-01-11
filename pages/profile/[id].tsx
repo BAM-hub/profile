@@ -268,7 +268,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { params: { id: doctor.Id.toString() }, locale: "ar" },
     ])
     .flat();
-  return { paths, fallback: true };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
