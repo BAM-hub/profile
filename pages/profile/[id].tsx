@@ -259,11 +259,11 @@ function Profile({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(
-    "https://api-dev.cura.healthcare/DoctorProfileAnonymous",
+    "https://api-dev.cura.healthcare/DoctorsListings/",
   );
   const data = await response.json();
   const paths = data.Result.map((doctor: Item) => ({
-    params: { id: doctor.Id },
+    params: { id: doctor.Id.toString() },
   }));
   return { paths, fallback: true };
 };
